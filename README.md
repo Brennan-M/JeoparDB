@@ -13,3 +13,8 @@ In order to install Node.js dependencies run the following command:
 npm install
 ```
 
+To start the server execute the following command. The applcation can then be found at
+localhost:3000
+```
+nodemon
+```

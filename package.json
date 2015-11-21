@@ -1,0 +1,23 @@
+{
+  "name": "jeopardb",
+  "version": "1.0.0",
+  "description": "Make custom jeopardy games with past questions.",
+  "main": "JeoparDB.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brennan-M/JeoparDB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brennan-M/JeoparDB/issues"
+  },
+  "homepage": "https://github.com/Brennan-M/JeoparDB#readme",
+  "dependencies": {
+    "mysql": "^2.9.0",
+    "nodemon": "^1.8.1"
+  }
+}

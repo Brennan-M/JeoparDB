@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Fontdiner+Swanky' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <title>JeoparDB</title>
+  </head>
+  <body>
+    <script>
+      if (window.jQuery) {
+        console.log("jQuery is loaded");
+      } else {
+        console.log("Not loaded!")
+      }
+    </script>
+      <h1 id="JeopardyTitle">JeoparDB!</h1>
+      <div class="center">
+        <h2>Pick a Team:</h2>
+        <table>
+          <tr>
+            <td id="redTeam" class="teams btn">
+              Red Team
+            </td>
+            <td id="blueTeam" class="teams btn">
+              Blue Team
+            </td>
+            <td id="greenTeam" class="teams btn">
+              Green Team
+            </td>
+          </tr>
+        </table>
+        <div>
+          <p>
+            JeoparDB is a way for you to build a custom Jeopardy game
+            from questions that have been previously asked on the show
+            and to test your Jeopardy skills against the world. Pick
+            a team and get started!
+          </p>
+        </div>
+      </div>
+  </body>
+</html>

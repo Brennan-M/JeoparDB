@@ -39,7 +39,7 @@ create table ShowDates
 	);
 
 create table QuestionIds
-	(QuestionId 		int not null auto_increment,
+	(QuestionId 		int not null,
 	 Question 			varchar(512) not null,
 	 primary key (QuestionId)
 	);
@@ -54,7 +54,6 @@ create table Questions
 	 CorrectCount		int not null,
 	 primary key (QuestionId),
 	 foreign key (Category) references Categories (Category) on delete cascade,
-	 foreign key (ShowNumber) references ShowDates (ShowNumber) on delete cascade,
-	 foreign key (QuestionId) references QuestionIds (QuestionId) on delete cascade
+	 foreign key (ShowNumber) references ShowDates (ShowNumber) on delete cascade
 	);
 

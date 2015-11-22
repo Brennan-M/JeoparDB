@@ -19,9 +19,8 @@ router.get('/', function(req, res, next) {
 	  console.log(rows);
 	  res.render('index', { Blue:rows[0]["Score"],
 	  						Green:rows[1]["Score"],
-	  						Red:rows[2]["Score"]
-						  });
-	}); 
+	  						Red:rows[2]["Score"]});
+	});
 });
 
 module.exports = router;

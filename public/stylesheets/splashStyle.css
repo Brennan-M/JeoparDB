@@ -19,17 +19,15 @@ table {
   margin: auto;
 }
 
-.teams {
+.btn {
   font-size: 35px;
   color: black;
   padding-left: 30px;
   padding-right: 30px;
   margin-left: 30px;
   margin-right: 30px;
-}
-
-.btn {
-  height: 100%;
+  position: relative;
+  line-height: 100%;
 }
 
 #greenTeam {

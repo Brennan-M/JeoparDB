@@ -3,8 +3,6 @@ var mysql = require('mysql');
 var config = require('./dbConfig.json');
 var fs = require('fs');
 
-QUESTIONS_DESIRED = 1000;
-
 var con = mysql.createConnection ({
 	host: config.host,
 	user: config.user,
@@ -22,23 +20,36 @@ con.connect(function(err) {
 
 
 // Populate our TeamScores Database
-var team = { Team : 'Blue', Score : 0 };
-con.query('INSERT INTO TeamScores SET ?', team, function(err,res){
-	if (err) throw err;
-});
+// var team = { Team : 'Blue', Score : 0 };
+// con.query('INSERT INTO TeamScores SET ?', team, function(err,res){
+// 	if (err) throw err;
+// });
 
-team = { Team : 'Red', Score : 0 };
-con.query('INSERT INTO TeamScores SET ?', team, function(err,res){
-	if (err) throw err;
-});
+// team = { Team : 'Red', Score : 0 };
+// con.query('INSERT INTO TeamScores SET ?', team, function(err,res){
+// 	if (err) throw err;
+// });
 
+
+var start = process.argv[2];
+var end = process.argv[3];
 
 // Populate our Tables with information from our question bank
 fs.readFile(question_bank, 'utf8', function (err, data) {
 
 	data = JSON.parse(data); 
 
-	for(var i = 0; i < QUESTIONS_DESIRED; i++) {
+	if (end === undefined) {
+		end = data.length;
+	}
+
+	if (end > data.length) {
+		end = data.length;
+	}
+
+	console.log("Gathering entries " + start + " through " + end + ".");
+
+	for (var i = start; i < end; i++) {
 
 	    var dateArray = data[i]["air_date"].split("-");
 	    var value;

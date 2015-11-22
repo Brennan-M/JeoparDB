@@ -1,6 +1,10 @@
 // Animation for Question click
 $(document).ready(function(){
   $('.qBox').click(function() {
+    $(this).empty();
+    $(this).off("click");
+    $(this).removeClass("qBox");
+    $(this).addClass("clickedQBox")
     var h = $(this).height();
     var w = $(this). width();
     var posn = $(this).offset();

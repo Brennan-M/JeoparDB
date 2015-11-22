@@ -15,7 +15,6 @@ th {
 }
 
 td:hover {
-  cursor: pointer;
   color: #cc9933;
 }
 
@@ -34,6 +33,14 @@ td:hover {
   font-size: 16px;
   position: relative;
   overflow: visible;
+  cursor: pointer;
+}
+
+.clickedQBox {
+  background-color: #0000A0;
+  position: relative;
+  overflow: visible;
+  cursor: default;
 }
 
 .board-table {

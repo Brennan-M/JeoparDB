@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Fontdiner+Swanky' rel='stylesheet' type='text/css'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#submit").click(function() {
+            $.post('/search', {"query": $("#inputbox").val()}, function(data){
+                console.log(data);
+            });
+                 
+        });
+      });
+    </script>
+    <title>JeoparDB</title>
+  </head>
+  <body>
+    <br>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon" id="sizing-addon1">Start Date</span>
+      <input type="text" id="inputbox" class="form-control" placeholder="yyyy/mm/dd" aria-describedby="sizing-addon1">
+    </div>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon" id="sizing-addon1">End Date</span>
+      <input type="text" class="form-control" placeholder="yyyy/mm/dd" aria-describedby="sizing-addon1">
+    </div>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon" id="sizing-addon1">Category</span>
+      <input type="text" class="form-control" placeholder="cluster" aria-describedby="sizing-addon1">
+    </div>
+    <br>
+    <button id="submit" type="button" class="btn btn-success btn-lg">Success</button>
+  </body>
+</html>

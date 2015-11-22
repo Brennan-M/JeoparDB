@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var game_board = require('./routes/game_board');
 var sampleInput = require('./routes/input');
+var queryDB = require('./queryDB.js');
+
+var app = exports = module.exports = {};
 
 var app = express();
 

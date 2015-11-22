@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'JeoparDB' });
+  res.render('game_board', {});
 });
 
-module.exports = router;
+module.exports = router; 

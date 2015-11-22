@@ -28,6 +28,10 @@ table {
   margin-right: 30px;
 }
 
+.btn {
+  height: 100%;
+}
+
 #greenTeam {
   background: #33cc33;
 }

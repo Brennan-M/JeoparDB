@@ -33,3 +33,18 @@ function drawChart() {
   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
   chart.draw(data, options);
 }
+
+// Team has been clicked
+$(document).ready(function() {
+  $('.btn').click(function() {
+    var id = $(this).attr('id');
+    if (id == "redTeam") {
+      var team = "Red";
+    } else if (id == "greenTeam"){
+      var team = "Green";
+    } else {
+      var team = "Blue"
+    }
+    location.href = location.href + "game/" + team
+  });
+});

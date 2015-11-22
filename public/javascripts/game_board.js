@@ -1,5 +1,5 @@
 // Animation for Question click
-$(document).ready(function(){
+$(document).ready(function() {
   $('.qBox').click(function() {
     $(this).empty();
     $(this).off("click");

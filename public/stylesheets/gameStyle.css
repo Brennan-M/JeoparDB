@@ -1,17 +1,57 @@
-body {
-  background-color: #BBBBBB;
+html {
+  height: 100%;
+  overflow: hidden;
 }
 
+body {
+  background-color: #333333;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
 
+th {
+  height: 30px;
+}
+
+td:hover {
+  cursor: pointer;
+  color: #cc9933;
+}
+
+.qHeader {
+  background-color: #0000A0;
+  color: #ffcc66;
+  text-align: center;
+  word-wrap: break-word;
+  cursor: default;
+}
 
 .qBox {
   background-color: #0000A0;
   color: #ffcc66;
   text-align: center;
+  font-size: 16px;
 }
 
 .board-table {
-  margin-top: 5%;
+  margin-top: 2%;
   width: 100%;
-  height: 95%;
+  height: 85%;
+}
+
+#headerInfo {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  text-align: center;
+  font-size: 25px;
+  color: #FFFFFF;
+}
+
+#JeopardyTitle {
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Fontdiner Swanky', cursive;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }

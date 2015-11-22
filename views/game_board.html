@@ -10,27 +10,31 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/gameStyle.css">
     <title>JeoparDB</title>
   </head>
-  <body>
+  <body ng-app="GameBoard">
     <script>
       if(typeof angular == 'undefined') {
         console.log("Angular does not work!")
       } else {
         console.log("Loaded successfully!")
       }
-      console.log(angular)
     </script>
-    <table ng-app="GameBoard" class="table-bordered board-table">
+    <div ng-controller="Header" class="row" id="headerInfo">
+      <div class="col-md-4" id="team">Team: Red</div>
+      <h1 id="JeopardyTitle" class="col-md-4">JeoparDB!</h1>
+      <div class="col-md-4" id="score">Score: {{score}}</div>
+    </div>
+    <table class="table-bordered board-table">
       <thead>
         <tr>
-          <th ng-repeat="h in [0, 1, 2, 3, 4] track by $index" class="qBox">
-            Category {{h + 1}}
+          <th ng-repeat="h in [0, 1, 2, 3, 4] track by $index" class="qHeader">
+            Words that start with the Letter Z {{h + 1}}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="row in [0, 1, 2, 3, 4] track by $index">
-          <td ng-repeat="col in [0, 1, 2, 3, 4] track by $index" class="btn qBox">
-            {{(col + 1) * 100}}$
+          <td ng-repeat="col in [0, 1, 2, 3, 4] track by $index" class="qBox">
+            {{(row + 1) * 100}}$
           </td>
         </tr>
       </tbody>

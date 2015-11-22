@@ -31,9 +31,9 @@ con.connect(function(err) {
 // });
 
 
-var start = process.argv[2];
-var end = process.argv[3];
-
+var start = Number(process.argv[2]);
+var end = Number(process.argv[3]);
+console.log(start, end)
 // Populate our Tables with information from our question bank
 fs.readFile(question_bank, 'utf8', function (err, data) {
 
@@ -60,6 +60,8 @@ fs.readFile(question_bank, 'utf8', function (err, data) {
 	   		value = Number(data[i]["value"].substring(1).replace(",", ""));
 	   	}
 	   	
+	   	console.log(i);
+
 	    var showDateInsertion = { ShowNumber : data[i]["show_number"],
 	    					  	  AirDay : Number(dateArray[2]),
 	    					 	  AirMonth : Number(dateArray[1]),

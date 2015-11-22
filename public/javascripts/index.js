@@ -22,7 +22,7 @@ function drawChart() {
   var options = {'width':800,
                  'height':500,
                  'is3D':true,
-                 'backgroundColor':'#0000A0',
+                 'backgroundColor':'transparent',
                  'pieSliceText':'label',
                  'legend':'none',
                  'titlePosition':'none',

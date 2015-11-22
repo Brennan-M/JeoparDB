@@ -2,7 +2,9 @@ body {
   padding: 20px;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #FFFFFF;
-  background-color: #0000a0;
+  background-image: url("/images/splashBackground.jpg");
+  background-size: 100% 105%;
+  background-repeat: no-repeat;
 }
 
 table {

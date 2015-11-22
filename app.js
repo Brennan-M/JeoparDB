@@ -32,9 +32,10 @@ app.use('/game', game_board)
 app.use('/input', sampleInput);
 
 
-app.post('/search', function(request, response){
-        console.log(request.body.query);
-        response.send("SUCCESS!!");
+app.post('/search', function(request, response) {
+    queryDB.query(request, function(err, data) {
+        response.send(data);
+   });
 });
 
 

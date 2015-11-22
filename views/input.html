@@ -8,7 +8,10 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $("#submit").click(function() {
-            $.post('/search', {"query": $("#inputbox").val()}, function(data){
+            $.post('/search', {"startDate": $("#startDateInput").val(),
+                               "endDate": $("#endDateInput").val(),
+                               "cluster": $("#clusterInput").val()},
+                              function(data){
                 console.log(data);
             });
                  
@@ -21,15 +24,15 @@
     <br>
     <div class="input-group input-group-lg">
       <span class="input-group-addon" id="sizing-addon1">Start Date</span>
-      <input type="text" id="inputbox" class="form-control" placeholder="yyyy/mm/dd" aria-describedby="sizing-addon1">
+      <input type="text" id="startDateInput" class="form-control" placeholder="mm/dd/yyyy" aria-describedby="sizing-addon1">
     </div>
     <div class="input-group input-group-lg">
       <span class="input-group-addon" id="sizing-addon1">End Date</span>
-      <input type="text" class="form-control" placeholder="yyyy/mm/dd" aria-describedby="sizing-addon1">
+      <input type="text" id="endDateInput" class="form-control" placeholder="mm/dd/yyyy" aria-describedby="sizing-addon1">
     </div>
     <div class="input-group input-group-lg">
       <span class="input-group-addon" id="sizing-addon1">Category</span>
-      <input type="text" class="form-control" placeholder="cluster" aria-describedby="sizing-addon1">
+      <input type="text" id="clusterInput" class="form-control" placeholder="cluster" aria-describedby="sizing-addon1">
     </div>
     <br>
     <button id="submit" type="button" class="btn btn-success btn-lg">Success</button>

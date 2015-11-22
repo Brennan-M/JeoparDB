@@ -21,8 +21,6 @@ router.get('/', function(req, res, next) {
 	  						Green:rows[1]["Score"],
 	  						Red:rows[2]["Score"]
 						  });
-	  
-	  con.end(function(err) {});
 	}); 
 });
 

@@ -40,7 +40,7 @@ create table ShowDates
 
 create table QuestionIds
 	(QuestionId 		int not null,
-	 Question 			varchar(512) not null,
+	 Question 			varchar(1024) not null,
 	 primary key (QuestionId)
 	);
 

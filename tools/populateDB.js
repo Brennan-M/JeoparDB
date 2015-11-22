@@ -3,6 +3,7 @@ var mysql = require('mysql');
 var config = require('./dbConfig.json');
 var fs = require('fs');
 
+QUESTIONS_DESIRED = 1000;
 
 var con = mysql.createConnection ({
 	host: config.host,
@@ -37,10 +38,17 @@ fs.readFile(question_bank, 'utf8', function (err, data) {
 
 	data = JSON.parse(data); 
 
-	for(var i = 0; i < data.length; i++) {
+	for(var i = 0; i < QUESTIONS_DESIRED; i++) {
 
-	    dateArray = data[i]["air_date"].split("-");
+	    var dateArray = data[i]["air_date"].split("-");
+	    var value;
 
+	   	if (data[i]["value"] === null) {
+	   		value = 0;
+	   	} else {
+	   		value = Number(data[i]["value"].substring(1).replace(",", ""));
+	   	}
+	   	
 	    var showDateInsertion = { ShowNumber : data[i]["show_number"],
 	    					  	  AirDay : Number(dateArray[2]),
 	    					 	  AirMonth : Number(dateArray[1]),
@@ -68,7 +76,7 @@ fs.readFile(question_bank, 'utf8', function (err, data) {
 	    						  Category : data[i]["category"],
 	    						  ShowNumber : data[i]["show_number"],
 	    						  Answer : Answer = data[i]["answer"],
-	    						  Value : Number(data[i]["value"].substring(1)),
+	    						  Value : value,
 	    						  AskedCount : 0,
 	    						  CorrectCount : 0
 	    						}

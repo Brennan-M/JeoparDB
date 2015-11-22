@@ -59,8 +59,6 @@ fs.readFile(question_bank, 'utf8', function (err, data) {
 	   	} else {
 	   		value = Number(data[i]["value"].substring(1).replace(",", ""));
 	   	}
-	   	
-	   	console.log(i);
 
 	    var showDateInsertion = { ShowNumber : data[i]["show_number"],
 	    					  	  AirDay : Number(dateArray[2]),

@@ -28,8 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/game', game_board)
 app.use('/input', sampleInput);
-app.use('/game', game_board);
 
 
 app.post('/search', function(request, response){
@@ -70,6 +70,3 @@ app.use(function(req, res, next) {
 
 
 module.exports = app;
-
-
-

@@ -37,7 +37,7 @@ console.log(start, end)
 // Populate our Tables with information from our question bank
 fs.readFile(question_bank, 'utf8', function (err, data) {
 
-	data = JSON.parse(data); 
+	data = JSON.parse(data);
 
 	if (end === undefined) {
 		end = data.length;
@@ -82,7 +82,7 @@ fs.readFile(question_bank, 'utf8', function (err, data) {
 	    con.query('INSERT IGNORE INTO Categories SET ?', categoriesInsertion, function(err, res) {
 			if (err) throw err;
 		});
-						
+
 	    var questionInsertion = { QuestionId : i,
 	    						  Category : data[i]["category"],
 	    						  ShowNumber : data[i]["show_number"],
@@ -101,6 +101,3 @@ fs.readFile(question_bank, 'utf8', function (err, data) {
     	console.log('Connection terminated.');
   	});
 });
-
-
-

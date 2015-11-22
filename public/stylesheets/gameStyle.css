@@ -1,0 +1,17 @@
+body {
+  background-color: #BBBBBB;
+}
+
+
+
+.qBox {
+  background-color: #0000A0;
+  color: #ffcc66;
+  text-align: center;
+}
+
+.board-table {
+  margin-top: 5%;
+  width: 100%;
+  height: 95%;
+}

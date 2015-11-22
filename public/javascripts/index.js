@@ -3,7 +3,7 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 
 // Set a callback to run when the Google Visualization API is loaded.
 google.setOnLoadCallback(drawChart);
-console.log("CALLED");
+
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
 // draws it.
@@ -13,9 +13,9 @@ function drawChart() {
   data.addColumn('string', 'Team');
   data.addColumn('number', 'Points');
   data.addRows([
-    ['Blue', 3],
-    ['Red', 1],
-    ['Green', 1],
+    ['Blue', blueScore],
+    ['Red', redScore],
+    ['Green', greenScore],
   ]);
 
   // Set chart options

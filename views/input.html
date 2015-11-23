@@ -13,9 +13,27 @@
                                "cluster": $("#clusterInput").val()},
                               function(data){
                 console.log(data);
+                document.getElementById('Question1').innerHTML = data[0]["Question"];
+                document.getElementById('Category1').innerHTML = data[0]["Category"];
+                document.getElementById('Cluster1').innerHTML = data[0]["Cluster"];
+
+                document.getElementById('Status').innerHTML = ("");
+                document.getElementById('real_answer').innerHTML = ("");
+                $("#answerInput").val("")
+
+                $("#confirmAnswer").click(function() {
+  
+                    if ($("#answerInput").val() == data[0]["Answer"]) {
+                      document.getElementById('Status').innerHTML = ("Correct!");
+                    } else {
+                      document.getElementById('Status').innerHTML = ("Wrong!");
+                    }
+                    document.getElementById('real_answer').innerHTML = data[0]["Answer"];
+                });
             });
                  
         });
+
       });
     </script>
     <title>JeoparDB</title>
@@ -36,5 +54,20 @@
     </div>
     <br>
     <button id="submit" type="button" class="btn btn-success btn-lg">Success</button>
+    <h2>Cluster</h2>
+    <p id="Cluster1"></p>
+    <h2>Category</h2>
+    <p id="Category1"></p>
+    <h2>Question</h2>
+    <p id="Question1"></p>
+    
+    <div class="input-group">
+      <div class="input-group-btn">
+          <button id="confirmAnswer" type="button" class="btn btn-primary">Submit</button>
+      </div>
+      <input type="text" id="answerInput" class="form-control" aria-label="...">
+    </div>
+    <h2 id="Status"></h2>
+    <p id="real_answer"> </p>
   </body>
 </html>

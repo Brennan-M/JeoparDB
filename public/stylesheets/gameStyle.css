@@ -10,14 +10,6 @@ body {
   height: 100%;
 }
 
-th {
-  height: 30px;
-}
-
-td:hover {
-  color: #cc9933;
-}
-
 .qHeader {
   background-color: #0000A0;
   color: #ffcc66;
@@ -36,6 +28,10 @@ td:hover {
   cursor: pointer;
 }
 
+.qBox:hover {
+  color: #cc9933;
+}
+
 .clickedQBox {
   background-color: #0000A0;
   position: relative;
@@ -47,6 +43,72 @@ td:hover {
   margin-top: 2%;
   width: 100%;
   height: 85%;
+  visibility: hidden;
+}
+
+.setupCol {
+  background-color: #0000A0;
+  color: #ffcc66;ded="false"
+  font-size: 16px;
+  text-align: left;
+  position: relative;
+  overflow: visible;
+  border: 1px solid white;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: text-top;
+  width: 20%;
+}
+
+.scHeader {
+  margin-top: 0px;
+  text-decoration: underline;
+}
+
+.querySubTitle:hover {
+  color: #cc9933;
+}
+
+.querySubTitle {
+  cursor: pointer;
+}
+
+#categoryButtons {
+  position: relative;
+  left: 10%;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+#submitButton {
+  background-color: #0000A0;
+  color: #ffcc66;
+  text-align: center;
+  font-size: 30px;
+  left: 42.5%;
+  position: absolute;
+  width: 15%;
+  height: auto;
+  padding-top: 1%;
+  margin-top: 10px;
+}
+
+#setup {
+  position: fixed;
+  width: 100%;
+  height: auto;
+}
+
+#setupTable {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  font-size: 25px;
+  color: #FFFFFF;
+  width: 100%;
+  height: auto;
+  border-spacing: 10px;
+  border-collapse: separate;
 }
 
 #headerInfo {

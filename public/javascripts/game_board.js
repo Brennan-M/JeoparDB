@@ -47,6 +47,7 @@ $(document).ready(function() {
     }
   });
 
+  // Buttons for choosing your cluster
   $('.clustButt').click(function() {
     var id = $(this).attr('id');
     var column = Number(id.substring(id.length-1, id.length))
@@ -59,8 +60,18 @@ $(document).ready(function() {
       }
     }
     selectedCluster[column] = id;
-    console.log(selectedCluster);
+  });
 
+  // Button for the cluster Header
+  $('.catHead').click(function() {
+    var id = $(this).attr('id');
+    var column = Number(id.substring(id.length - 1, id.length));
+    var chosen = selectedCluster[column];
+    if (chosen != undefined) {
+      $("#" + chosen).attr('aria-pressed', 'false');
+      $("#" + chosen).removeClass('active');
+    }
+    selectedCluster[column] = undefined;
   });
 });
 

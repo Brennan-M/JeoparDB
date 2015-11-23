@@ -52,13 +52,13 @@
             </table>
             <h3 style="margin-left: 10px;" data-toggle="collapse" href="#cat{{col}}" aria-expanded="false" class="querySubTitle">Category</h3>
             <div class="collapse" id="cat{{col}}">
-              <div class="btn-group-vertical" role="group" aria-label="Categories" id="categoryButtons">
-                <button type="button" class="btn btn-default">Social Sciences</button>
-                <button type="button" class="btn btn-default">Pop Culture</button>
-                <button type="button" class="btn btn-default">Art and Media</button>
-                <button type="button" class="btn btn-default">Science</button>
-                <button type="button" class="btn btn-default">Word Play</button>
-                <button type="button" class="btn btn-default">Miscellaneous</button>
+              <div class="btn-group-vertical categoryButtons" role="group" aria-label="Categories" id="butts{{col}}">
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="ss{{col}}">Social Sciences</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="pc{{col}}">Pop Culture</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="art{{col}}">Art and Media</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="sci{{col}}">Science</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="wp{{col}}">Word Play</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="misc{{col}}">Miscellaneous</button>
               </div>
             </div>
           </td>

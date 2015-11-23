@@ -1,3 +1,5 @@
+// Global vars
+var selectedCluster = [undefined, undefined, undefined, undefined, undefined];
 // Handlers
 $(document).ready(function() {
   // Question click
@@ -38,11 +40,27 @@ $(document).ready(function() {
   });
 
   $('.querySubTitle').click(function() {
-    if ($(this).css('text-decoration') == 'underline') {
-      $(this).css('text-decoration', 'none');
+    if ($(this).css('font-weight') == 'bold') {
+      $(this).css('font-weight', 'normal');
     } else {
-      $(this).css('text-decoration', 'underline');
+      $(this).css('font-weight', 'bold');
     }
+  });
+
+  $('.clustButt').click(function() {
+    var id = $(this).attr('id');
+    var column = Number(id.substring(id.length-1, id.length))
+    if (selectedCluster[column] != undefined) {
+      if (selectedCluster[column] == id) {
+        selectedCluster[column] = undefined;
+      } else {
+        $("#" + selectedCluster[column]).attr('aria-pressed', 'false');
+        $("#" + selectedCluster[column]).removeClass('active');
+      }
+    }
+    selectedCluster[column] = id;
+    console.log(selectedCluster);
+
   });
 });
 

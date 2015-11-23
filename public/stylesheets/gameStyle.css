@@ -74,11 +74,19 @@ body {
   cursor: pointer;
 }
 
-#categoryButtons {
+.categoryButtons {
   position: relative;
   left: 10%;
   width: 80%;
   margin-bottom: 10px;
+}
+
+.clustButt {
+  background-color: #FFFFFF;
+}
+
+.clustButt:active {
+  background-color: #111111;
 }
 
 #submitButton {

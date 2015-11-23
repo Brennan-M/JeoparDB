@@ -36,17 +36,17 @@
         <tr>
           <td ng-repeat="col in [0, 1, 2, 3, 4] track by $index" class="setupCol" id="sc{{col}}">
             <h3 class="scHeader">Category {{col + 1}}</h2>
-            <h3 style="margin-left: 10px;" data-toggle="collapse" href="#date{{col}}" aria-expanded="false" class="querySubTitle">Date Range</h3>
+            <h3 style="margin-left: 10px;" data-toggle="collapse" href="#date{{col}}" aria-expanded="false" class="querySubTitle dateHead" id="dateHead{{col}}">Date Range</h3>
             <table class="collapse" id="date{{col}}">
               <tr>
                 <td>
-                  <input type="text" id="startDateInput" class="form-control" placeholder="mm/dd/yyyy" aria-describedby="sizing-addon1">
+                  <input type="text" id="startDate{{col}}" class="form-control" placeholder="mm/dd/yyyy" aria-describedby="sizing-addon1">
                 </td>
                 <td>
                   <span class="input-group-addon">to</span>
                 </td>
                 <td>
-                  <input type="text" id="startDateInput" class="form-control" placeholder="mm/dd/yyyy" aria-describedby="sizing-addon1">
+                  <input type="text" id="endDate{{col}}" class="form-control" placeholder="mm/dd/yyyy" aria-describedby="sizing-addon1">
                 </td>
               </tr>
             </table>
@@ -55,10 +55,10 @@
               <div class="btn-group-vertical categoryButtons" role="group" aria-label="Categories" id="butts{{col}}">
                 <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="ss{{col}}">Social Sciences</button>
                 <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="pc{{col}}">Pop Culture</button>
-                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="art{{col}}">Art and Media</button>
-                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="sci{{col}}">Science</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="ar{{col}}">Art and Media</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="si{{col}}">Science</button>
                 <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="wp{{col}}">Word Play</button>
-                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="misc{{col}}">Miscellaneous</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="mi{{col}}">Miscellaneous</button>
               </div>
             </div>
           </td>

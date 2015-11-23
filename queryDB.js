@@ -103,7 +103,7 @@ queryDB.query = function(request, callback) {
 
 	fullSQLQuery = fullSQLQuery.concat("ORDER BY RAND() LIMIT 1");
 	fullSQLQuery = fullSQLQuery.concat(";");
-	console.log(fullSQLQuery);
+	//console.log(fullSQLQuery);
 
 	con.query(fullSQLQuery, function(err, rows) {
 	  
@@ -111,9 +111,12 @@ queryDB.query = function(request, callback) {
 
 	  	if (rows.length == 1) {
 
-	  		var newSQLQuery = format('SELECT * FROM QuestionIds NATURAL JOIN Questions WHERE Category="{0}" AND ShowNumber={1}',
-	  	 						 	rows[0]["Category"], rows[0]["ShowNumber"]);
+	  		var category = rows[0]["Category"];
+	  		category = category.replace(/'/g, "''");
+	  		var newSQLQuery = format("SELECT * FROM QuestionIds NATURAL JOIN Questions NATURAL JOIN Categories WHERE Category='{0}' AND ShowNumber={1};",
+	  	 						 	category, rows[0]["ShowNumber"]);
 
+	  		console.log(newSQLQuery);
 		  	con.query(newSQLQuery, function(err, rows) {
 		  		callback(err, rows);
 		  		con.end(function(err) { console.log('Connection terminated.') });

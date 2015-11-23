@@ -54,8 +54,7 @@
             <div class="collapse" id="cat{{col}}">
               <div class="btn-group-vertical categoryButtons" role="group" aria-label="Categories" id="butts{{col}}">
                 <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="ss{{col}}">Social Sciences</button>
-                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="pc{{col}}">Pop Culture</button>
-                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="ar{{col}}">Art and Media</button>
+                <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="ap{{col}}">Art and Pop Culture</button>
                 <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="si{{col}}">Science</button>
                 <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="wp{{col}}">Word Play</button>
                 <button type="button" data-toggle="button" aria-pressed="false" class="btn btn-default clustButt" id="mi{{col}}">Miscellaneous</button>
@@ -72,15 +71,15 @@
     <table class="table-bordered board-table">
       <thead>
         <tr>
-          <th ng-repeat="h in [0, 1, 2, 3, 4] track by $index" class="qHeader">
-            Words that start with the Letter Z {{h + 1}}
+          <th ng-repeat="h in [0, 1, 2, 3, 4] track by $index" class="qHeader" id="h{{h}}">
+            Test {{h}}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="row in [0, 1, 2, 3, 4] track by $index">
-          <td ng-repeat="col in [0, 1, 2, 3, 4] track by $index" class="qBox">
-            {{(row + 1) * 100}}$
+          <td ng-repeat="col in [0, 1, 2, 3, 4] track by $index" class="qBox" id="q{{row}}{{col}}">
+            ${{(row + 1) * 100}}
           </td>
         </tr>
       </tbody>

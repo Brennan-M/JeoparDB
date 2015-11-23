@@ -16,16 +16,19 @@ body {
   text-align: center;
   word-wrap: break-word;
   cursor: default;
+  font-size: 30px;
+  width: 20%;
 }
 
 .qBox {
   background-color: #0000A0;
   color: #ffcc66;
   text-align: center;
-  font-size: 16px;
+  font-size: 30px;
   position: relative;
   overflow: visible;
   cursor: pointer;
+  width: 20%;
 }
 
 .qBox:hover {

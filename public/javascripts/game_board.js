@@ -6,6 +6,10 @@ var selectedCluster = [];
 for (var i = 0; i < NUM_COLS; i++) {
   selectedCluster.push(undefined);
 }
+var questions = [];
+for (var i = 0; i < NUM_COLS; i++) {
+  questions.push(undefined);
+}
 
 // ---------------------Helper functions----------------------
 
@@ -60,13 +64,11 @@ function getInfoForCol(col) {
     if (tag == "mi") {
       toReturn.push("Miscellaneous");
     } else if (tag == "wp") {
-      toReturn.push("Word Play");
+      toReturn.push("Wordplay");
     } else if (tag == "ss") {
-      toReturn.push("Social Sciences")
-    } else if (tag == "pc") {
-      toReturn.push("Pop Culture");
-    } else if (tag == "ar") {
-      toReturn.push("Art and Media");
+      toReturn.push("Social Science");
+    } else if (tag == "ap") {
+      toReturn.push("Art/Pop Culture");
     } else {
       toReturn.push("Science");
     }
@@ -120,12 +122,28 @@ $(document).ready(function() {
         dataToSend.push(colInfo);
       }
     }
-    console.log(dataToSend);
     if (invalidData) {
       return;
     }
-    $('#setup').remove();
-    $('.board-table').css('visibility', 'visible')
+    var responseCounter = 0;
+    for (var i = 0; i < NUM_COLS; i++) {
+      (function(colNum) {
+        $.post('/search', {"startDate": dataToSend[i][0],
+                           "endDate": dataToSend[i][1],
+                           "cluster": dataToSend[i][0]}, function(res) {
+             console.log('#h' + colNum.toString());
+             console.log(res[0]['Category']);
+             questions[colNum] = res;
+             $('#h' + colNum.toString()).text(res[0]['Category']);
+             responseCounter++;
+             if (responseCounter == 5) {
+               $('#setup').remove();
+               $('.board-table').css('visibility', 'visible');
+             }
+           });
+       })(i);
+    }
+    console.log(questions);
   });
 
   $('.querySubTitle').click(function() {

@@ -34,9 +34,14 @@ app.use('/input', sampleInput);
 
 
 app.post('/search', function(request, response) {
-    queryDB.query(request, function(err, data) {
-        response.send(data);
-   });
+    var anonFunc = function(error, res) {
+      if(res.length != 5) {
+        queryDB.query(request, anonFunc);
+      } else {
+        response.send(res);
+      }
+    }
+    queryDB.query(request, anonFunc);
 });
 
 app.post('/update', function(request, response) {

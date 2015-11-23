@@ -19,18 +19,6 @@ con.connect(function(err) {
 });
 
 
-// Populate our TeamScores Database
-// var team = { Team : 'Blue', Score : 0 };
-// con.query('INSERT INTO TeamScores SET ?', team, function(err,res){
-// 	if (err) throw err;
-// });
-
-// team = { Team : 'Red', Score : 0 };
-// con.query('INSERT INTO TeamScores SET ?', team, function(err,res){
-// 	if (err) throw err;
-// });
-
-
 var start = Number(process.argv[2]);
 var end = Number(process.argv[3]);
 console.log(start, end)

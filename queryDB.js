@@ -6,6 +6,33 @@ var format = require('string-format');
 var queryDB = exports = module.exports = {};
 
 
+queryDB.update = function(request, callback) {
+	var con = mysql.createConnection ({
+		host: config.host,
+		user: config.user,
+		password: config.password,
+		database: config.database
+	});
+
+	con.connect(function(err) {
+		if (err) {
+			console.log('Could not connect to Database.');
+			return;
+		}
+		console.log('Connection established.');
+	});
+
+	var SQLQuery = format('UPDATE Questions SET AskedCount = AskedCount + 1 WHERE QuestionId={0};', request.body.questionId);
+
+	con.query(SQLQuery, function(err, res) {});
+
+	if (request.body.status == "correct") {
+		var SQLQuery = format('UPDATE Questions SET CorrectCount = CorrectCount + 1 WHERE QuestionId={0};', request.body.questionId);
+		con.query(SQLQuery, function(err, res) {});
+	}
+
+};
+
 queryDB.query = function(request, callback) {
 	
 	var con = mysql.createConnection ({

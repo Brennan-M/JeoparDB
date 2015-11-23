@@ -38,6 +38,12 @@ app.post('/search', function(request, response) {
    });
 });
 
+app.post('/update', function(request, response) {
+    queryDB.update(request, function() {
+        response.send("Success");
+   });
+});
+
 
 // development error handler
 // will print stacktrace

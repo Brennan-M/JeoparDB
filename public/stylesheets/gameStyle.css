@@ -92,6 +92,11 @@ body {
   background-color: #111111;
 }
 
+.Question {
+  padding: 10%;
+  padding-top: 0%;
+}
+
 #submitButton {
   background-color: #0000A0;
   color: #ffcc66;
@@ -128,6 +133,27 @@ body {
   text-align: center;
   font-size: 25px;
   color: #FFFFFF;
+}
+
+#QuestionBox {
+  position: relative;
+  height: auto;
+  margin-top: 25vh;
+}
+
+#answerBox {
+  width: 60%;
+  position: relative;
+  margin-top: 10%;
+}
+
+#QuestionText {
+  color: #ffcc66;
+}
+
+#questionCluster {
+  color: #ffcc66;
+  margin-top: 5%;
 }
 
 #JeopardyTitle {

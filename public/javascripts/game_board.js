@@ -87,7 +87,9 @@ $(document).ready(function() {
     var h = $(this).height();
     var w = $(this). width();
     var posn = $(this).offset();
-    console.log(posn)
+    var id = $(this).attr('id');
+    var row = Number(id.substring(1, 2));
+    var col = Number(id.substring(2, 3));
     $("body").append("<div class='Question' "
         + "style='background-color: #0000A0; position: fixed; z-index: 1;"
         + "top: " + ((posn['top'] + h/2).toString() + "px")
@@ -96,15 +98,18 @@ $(document).ready(function() {
         + "border: 1px solid white'"
         + "></div>");
     var offset = $('.Question').offset();
-    console.log(offset)
     $(".Question").animate({height: "100%",
         width: "100%",
         "top": ("-=" + offset['top'].toString() + "px"),
         "left": ("-=" + offset['left'].toString() + "px")},
         "slow", function() {
-          $(this).bind("click", function(){
-            $(this).remove();
-          })
+          $(this).load('/templates/question.html #QuestionBox', "", function() {
+            $("#QuestionText").append(questions[col][row]['Question']);
+            $("#questionCluster").append(questions[col][row]['Cluster'])
+            $("#questionSubmit").bind("click", function(){
+              $(".Question").remove();
+            })
+          });
         });
   });
 

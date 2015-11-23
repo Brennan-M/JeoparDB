@@ -1,5 +1,6 @@
-// Animation for Question click
+// Handlers
 $(document).ready(function() {
+  // Question click
   $('.qBox').click(function() {
     $(this).empty();
     $(this).off("click");
@@ -18,8 +19,8 @@ $(document).ready(function() {
         + "></div>");
     var offset = $('.Question').offset();
     console.log(offset)
-    $(".Question").animate({height: "100vh",
-        width: "200vh",
+    $(".Question").animate({height: "100%",
+        width: "100%",
         "top": ("-=" + offset['top'].toString() + "px"),
         "left": ("-=" + offset['left'].toString() + "px")},
         "slow", function() {
@@ -28,6 +29,21 @@ $(document).ready(function() {
           })
         });
   });
+
+  // Submit button clicked
+  $('#submitButton').click(function() {
+    // Logic to read input and post request here.
+    $('#setup').remove();
+    $('.board-table').css('visibility', 'visible')
+  });
+
+  $('.querySubTitle').click(function() {
+    if ($(this).css('text-decoration') == 'underline') {
+      $(this).css('text-decoration', 'none');
+    } else {
+      $(this).css('text-decoration', 'underline');
+    }
+  });
 });
 
 
@@ -35,7 +51,7 @@ console.log('Module loaded')
 angular.module('GameBoard', [])
 
 .controller('Header', ['$scope', function($scope) {
-  $scope.score = 1000;
+  $scope.score = 0;
 }])
 
 

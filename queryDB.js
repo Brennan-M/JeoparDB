@@ -24,13 +24,16 @@ queryDB.update = function(request, callback) {
 
 	var SQLQuery = format('UPDATE Questions SET AskedCount = AskedCount + 1 WHERE QuestionId={0};', request.body.questionId);
 
-	con.query(SQLQuery, function(err, res) {});
-
-	if (request.body.status == "correct") {
-		var SQLQuery = format('UPDATE Questions SET CorrectCount = CorrectCount + 1 WHERE QuestionId={0};', request.body.questionId);
-		con.query(SQLQuery, function(err, res) {});
-	}
-
+	con.query(SQLQuery, function(err, res) {
+		if (request.body.status == "correct") {
+			var SQLQuery = format('UPDATE Questions SET CorrectCount = CorrectCount + 1 WHERE QuestionId={0};', request.body.questionId);
+			con.query(SQLQuery, function(err, res) {
+				con.end(function(err) { console.log('Connection terminated.') });
+			});
+		} else {
+			con.end(function(err) { console.log('Connection terminated.') });
+		}
+	});
 };
 
 queryDB.query = function(request, callback) {
@@ -140,7 +143,7 @@ queryDB.query = function(request, callback) {
 
 	  		var category = rows[0]["Category"];
 	  		category = category.replace(/'/g, "''");
-	  		var newSQLQuery = format("SELECT * FROM QuestionIds NATURAL JOIN Questions NATURAL JOIN Categories WHERE Category='{0}' AND ShowNumber={1};",
+	  		var newSQLQuery = format("SELECT * FROM QuestionIds NATURAL JOIN Questions NATURAL JOIN Categories NATURAL JOIN ShowDates WHERE Category='{0}' AND ShowNumber={1};",
 	  	 						 	category, rows[0]["ShowNumber"]);
 
 	  		console.log(newSQLQuery);

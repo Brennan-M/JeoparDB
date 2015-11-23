@@ -5,6 +5,7 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Fontdiner+Swanky' rel='stylesheet' type='text/css'>
+    <script src="/javascripts/answerCompare.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         $("#submit").click(function() {
@@ -16,6 +17,7 @@
                 document.getElementById('Question1').innerHTML = data[0]["Question"];
                 document.getElementById('Category1').innerHTML = data[0]["Category"];
                 document.getElementById('Cluster1').innerHTML = data[0]["Cluster"];
+                document.getElementById('Answer1').innerHTML = data[0]["Answer"];
 
                 document.getElementById('Status').innerHTML = ("");
                 document.getElementById('real_answer').innerHTML = ("");
@@ -33,56 +35,21 @@
 
                     document.getElementById('real_answer').innerHTML = data[0]["Answer"];
 
+                    // Ian, inside the data sent with this post request
+                    // Add data[<whatever>]["Value"] and Team as parameters
+                    // Then insude queryDB.update in queryDB.js make a 3rd
+                    // query to update the value of the teamScore.
                     $.post('/update', {"questionId": data[0]["QuestionId"], "status": status},
-                    function(data) {
+                      function(data) {
                         console.log(data);
                     });
+
                 });
             });
                  
         });
 
       });
-
-      function isSimilar(word1, word2) {
-        word1 = word1.replace(/\\/, "");
-        word1 = word1.replace(/"/, "");
-        word1 = word1.replace(/'/, "");
-        word2 = word2.replace(/\\/, "");
-        word2 = word2.replace(/"/, "");
-        word2 = word2.replace(/'/, "");
-        console.log(word1);
-        console.log(word2);
-        //need to run lavenshteins algorithm
-        return (word1 == word2);
-
-      };
-
-      // NEED TO REMOVE handle () as alternative and / for different pairs, handle first letter if it is 'a' allow and for &
-      function isCorrect(response, answer) {
-        var response = response.toLowerCase();
-        var answer = answer.toLowerCase();
-
-        var resArray = response.split(" ");
-        var ansArray = answer.split(" ");
-
-        if (ansArray.length != resArray.length) {
-          return false;
-        }
-
-        for (var i = 0; i < ansArray.length; i++) {
-          if (!isSimilar(resArray[i], ansArray[i])) {
-            return false;
-          }
-        }
-
-        return true;
-
-        console.log(markCorrect);
-        console.log(len);
-
-      };
-
     </script>
     <title>JeoparDB</title>
   </head>
@@ -108,6 +75,8 @@
     <p id="Category1"></p>
     <h2>Question</h2>
     <p id="Question1"></p>
+    <h2>Answer</h2>
+    <p id="Answer1"></p>
     
     <div class="input-group">
       <div class="input-group-btn">

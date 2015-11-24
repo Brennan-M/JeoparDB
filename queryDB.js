@@ -52,9 +52,11 @@ queryDB.update = function(request, callback) {
 			var SQLQuery = format('UPDATE Questions SET CorrectCount = CorrectCount + 1 WHERE QuestionId={0};', request.body.questionId);
 			con.query(SQLQuery, function(err, res) {
 				con.end(function(err) { console.log('Connection terminated.') });
+				callback(err, "Success");
 			});
 		} else {
 			con.end(function(err) { console.log('Connection terminated.') });
+			callback(err, "Success");
 		}
 	});
 };

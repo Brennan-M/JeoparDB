@@ -44,17 +44,17 @@ app.post('/search', function(request, response) {
     queryDB.query(request, anonFunc);
 });
 
-app.post('/update', function(request, response) {
-    queryDB.update(request, function() {
+app.post('/getStats', function(request, response) {
+    queryDB.getStats(request, function(err, data) {
         if (err) {
           throw err;
         }
-        response.send("Success");
+        response.send(data);
    });
 });
 
-app.post('/getStats', function(request, response) {
-    queryDB.getStats(request, function(err, data) {
+app.post('/update', function(request, response) {
+    queryDB.update(request, function(err, data) {
         if (err) {
           throw err;
         }

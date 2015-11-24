@@ -181,10 +181,14 @@ $(document).ready(function() {
       	      var answer = questions[col][row]['Answer'];
       	      $('#CorrectAnswer').append("Answer: " + answer);
       	      $("#continueButton").css("visibility", "visible");
-           	      $('#continueButton').bind("click", function() {
-            		updateScore();
-            		$('.Question').remove();
-          	      });
+       	      $('#continueButton').bind("click", function() {
+        		    updateScore();
+        		    $('.Question').remove();
+      	      });
+              $.post('/update', {"questionId": questions[col][row]['QuestionId'], "status": "wrong"},
+                function(data) {
+                  console.log(data);
+              });
       	    });
           });
         });

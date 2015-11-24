@@ -145,13 +145,13 @@ body {
 #QuestionBox {
   position: relative;
   height: auto;
-  margin-top: 25vh;
+  margin-top: 5vh;
 }
 
 #answerBox {
   width: 60%;
   position: relative;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 #QuestionText {
@@ -160,7 +160,14 @@ body {
 
 #questionCluster {
   color: #ffcc66;
-  margin-top: 5%;
+  margin-bottom: 20%;
+}
+
+#Statistics {
+  color: #ffcc66;
+  text-align: center;
+  position: fixed;
+  bottom: 15px;
 }
 
 #JeopardyTitle {

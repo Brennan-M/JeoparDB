@@ -82,10 +82,10 @@ queryDB.query = function(request, callback) {
 		sdSQL = undefined;
 	} else {
 		var startDateArr = request.body.startDate.split("/");
+		console.log(startDateArr);
 		if (startDateArr.length != 3) {
 			sdSQL = undefined;
 		} else {
-			console.log(request.body.startDate);
 			var sdYear = startDateArr[2];
 			var sdMonth = startDateArr[0];
 			var sdDay = startDateArr[1];
@@ -102,7 +102,6 @@ queryDB.query = function(request, callback) {
 		if (endDateArr.length != 3) {
 			edSQL = undefined;
 		} else {
-			console.log(request.body.endDate);
 			var edYear = endDateArr[2];
 			var edMonth = endDateArr[0];
 			var edDay = endDateArr[1];

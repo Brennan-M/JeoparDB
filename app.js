@@ -46,12 +46,18 @@ app.post('/search', function(request, response) {
 
 app.post('/update', function(request, response) {
     queryDB.update(request, function() {
+        if (err) {
+          throw err;
+        }
         response.send("Success");
    });
 });
 
 app.post('/getStats', function(request, response) {
     queryDB.getStats(request, function(err, data) {
+        if (err) {
+          throw err;
+        }
         response.send(data);
    });
 });

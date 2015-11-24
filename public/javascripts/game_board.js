@@ -113,7 +113,6 @@ function makeSubmitListener(row, col) {
       $('#Feedback').css('color', 'red');
       toAddToScore = -200 * (row + 1);
     }
-    console.log(questions[col][row]['QuestionId']);
     $.post('/update', {"questionId": questions[col][row]['QuestionId'], "status": status},
       function(data) {
         console.log(data);
@@ -175,9 +174,9 @@ $(document).ready(function() {
                 (makeSubmitListener(row, col))();
               }
             });
-	    $("#questionPass").bind("click", function() {
-	      $('.Question').remove();
-	    });
+      	    $("#questionPass").bind("click", function() {
+      	      $('.Question').remove();
+      	    });
           });
         });
   });

@@ -60,11 +60,11 @@ function getInfoForCol(col) {
   toReturn.push(startDate);
   toReturn.push(endDate);
   if (selectedCluster[col] == undefined) {
-    toReturn.push(undefined);
+    toReturn.push("");
   } else {
     var tag = selectedCluster[col].substring(0,2);
     if (tag == "mi") {
-      toReturn.push("Miscellaneous");
+      toReturn.push("Misc");
     } else if (tag == "wp") {
       toReturn.push("Wordplay");
     } else if (tag == "ss") {
@@ -176,13 +176,9 @@ $(document).ready(function() {
     var responseCounter = 0;
     for (var i = 0; i < NUM_COLS; i++) {
       (function(colNum) {
-        // $.post('/search', {"startDate": dataToSend[i][0],
-        //                    "endDate": dataToSend[i][1],
-        //                    "cluster": dataToSend[i][2]}, function(res) {
-        // SEEMS TO BE BROKEN FOR NOW BRENNAN FIX!?!?!?!
-        $.post('/search', {"startDate": "",
-                           "endDate": "",
-                           "cluster": ""}, function(res) {
+        $.post('/search', {"startDate": dataToSend[i][0],
+                           "endDate": dataToSend[i][1],
+                           "cluster": dataToSend[i][2]}, function(res) {
              questions[colNum] = res;
              $('#h' + colNum.toString()).text(res[0]['Category']);
              responseCounter++;

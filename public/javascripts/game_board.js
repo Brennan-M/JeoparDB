@@ -101,15 +101,23 @@ function makeSubmitListener(row, col) {
     $('#questionPass').prop('disabled', 'true');
     $('#questionPass').off('click');
     $('#CorrectAnswer').append("Answer: " + answer);
+    var status = undefined;
     if (correct) {
+      status = "correct";
       $('#Feedback').append("Correct!");
       $('#Feedback').css('color', '#ffcc66');
       toAddToScore = 200 * (row + 1);
     } else {
+      status = "wrong";
       $('#Feedback').append("Wrong!");
       $('#Feedback').css('color', 'red');
       toAddToScore = -200 * (row + 1);
     }
+    console.log(questions[col][row]['QuestionId']);
+    $.post('/update', {"questionId": questions[col][row]['QuestionId'], "status": status},
+      function(data) {
+        console.log(data);
+    });
     $("#continueButton").css("visibility", "visible");
     $('#continueButton').bind("click", function() {
       updateScore();
@@ -149,6 +157,18 @@ $(document).ready(function() {
             $("#QuestionText").append(questions[col][row]['Question']);
             $("#questionCluster").append(questions[col][row]['Cluster']);
             $("#answerText").focus();
+            $.post('/getStats', {"questionId": questions[col][row]['QuestionId']},
+              function(data) {
+                var percentage = data[0]["CorrectCount"]*1.0/data[0]["AskedCount"];
+                if (isNaN(percentage)) {
+                  $("#Statistics").append("You are the first person to be asked this question!");
+                } else {
+                  percentage *= 100.0;
+                  percentage = (percentage).toFixed(1);
+                  $("#Statistics").append(percentage);
+                  $("#Statistics").append("% of players answered this question correctly.");
+                }
+            });
             $("#questionSubmit").bind("click", makeSubmitListener(row, col));
             $("#answerText").keydown(function(event) {
               if (event.which == 13) {

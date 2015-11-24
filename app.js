@@ -50,6 +50,12 @@ app.post('/update', function(request, response) {
    });
 });
 
+app.post('/getStats', function(request, response) {
+    queryDB.getStats(request, function(err, data) {
+        response.send(data);
+   });
+});
+
 
 // development error handler
 // will print stacktrace

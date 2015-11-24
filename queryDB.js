@@ -133,11 +133,13 @@ queryDB.query = function(request, callback) {
 
 	fullSQLQuery = fullSQLQuery.concat("ORDER BY RAND() LIMIT 1");
 	fullSQLQuery = fullSQLQuery.concat(";");
-	//console.log(fullSQLQuery);
 
 	con.query(fullSQLQuery, function(err, rows) {
 	  
-	  	if(err) throw err;
+	  	if (err) {
+	  		con.end(function(err) { console.log('Connection terminated.') });
+	  		throw err;
+	  	}
 
 	  	if (rows.length == 1) {
 

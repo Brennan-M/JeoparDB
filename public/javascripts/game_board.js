@@ -114,7 +114,7 @@ function makeSubmitListener(row, col) {
     $('#continueButton').bind("click", function() {
       updateScore();
       $('.Question').remove();
-    })
+    });
   }
 }
 
@@ -156,7 +156,16 @@ $(document).ready(function() {
               }
             });
 	    $("#questionPass").bind("click", function() {
-	      $('.Question').remove();
+	      toAddToScore = 0;	      
+	      $('#questionSubmit').prop('disabled', 'true');
+    	      $('#questionPass').prop('disabled', 'true');
+	      var answer = questions[col][row]['Answer'];
+	      $('#CorrectAnswer').append("Answer: " + answer);
+	      $("#continueButton").css("visibility", "visible");
+     	      $('#continueButton').bind("click", function() {
+      		updateScore();
+      		$('.Question').remove();
+    	      });
 	    });
           });
         });

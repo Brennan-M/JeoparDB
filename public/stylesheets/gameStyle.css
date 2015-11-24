@@ -18,6 +18,8 @@ body {
   cursor: default;
   font-size: 30px;
   width: 20%;
+  position: relative;
+  height: 10%;
 }
 
 .qBox {
@@ -29,6 +31,7 @@ body {
   overflow: visible;
   cursor: pointer;
   width: 20%;
+  height: 18%
 }
 
 .qBox:hover {
@@ -95,6 +98,10 @@ body {
 .Question {
   padding: 10%;
   padding-top: 0%;
+}
+
+#CorrectAnswer {
+  color: #ffcc66;
 }
 
 #submitButton {

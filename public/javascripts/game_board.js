@@ -10,6 +10,8 @@ var questions = [];
 for (var i = 0; i < NUM_COLS; i++) {
   questions.push(undefined);
 }
+var toAddToScore = undefined;
+var currScore = 0;
 
 // ---------------------Helper functions----------------------
 
@@ -76,6 +78,43 @@ function getInfoForCol(col) {
   return toReturn;
 }
 
+function updateScore() {
+  currScore += toAddToScore;
+  toAddToScore = undefined;
+  $('#scoreNum').text(currScore.toString());
+  if (currScore < 0) {
+    $('#scoreNum').css("color", "red");
+  } else {
+    $('#scoreNum').css("color", "white");
+  }
+}
+
+function makeSubmitListener(row, col) {
+  return function(){
+    if (toAddToScore != undefined) {
+      return;
+    }
+    var entered = $('#answerText').val();
+    var answer = questions[col][row]['Answer'];
+    var correct = isCorrect(entered, answer);
+    $('#CorrectAnswer').append("Answer: " + answer);
+    if (correct) {
+      $('#Feedback').append("Correct!");
+      $('#Feedback').css('color', '#ffcc66');
+      toAddToScore = 200 * (row + 1);
+    } else {
+      $('#Feedback').append("Wrong!");
+      $('#Feedback').css('color', 'red');
+      toAddToScore = -200 * (row + 1);
+    }
+    $("#continueButton").css("visibility", "visible");
+    $('#continueButton').bind("click", function() {
+      updateScore();
+      $('.Question').remove();
+    })
+  }
+}
+
 // ------------------- Handlers -----------------------
 $(document).ready(function() {
   // Question click
@@ -105,9 +144,13 @@ $(document).ready(function() {
         "slow", function() {
           $(this).load('/templates/question.html #QuestionBox', "", function() {
             $("#QuestionText").append(questions[col][row]['Question']);
-            $("#questionCluster").append(questions[col][row]['Cluster'])
-            $("#questionSubmit").bind("click", function(){
-              $(".Question").remove();
+            $("#questionCluster").append(questions[col][row]['Cluster']);
+            $("#answerText").focus();
+            $("#questionSubmit").bind("click", makeSubmitListener(row, col));
+            $("#answerText").keydown(function(event) {
+              if (event.which == 13) {
+                (makeSubmitListener(row, col))();
+              }
             })
           });
         });
@@ -133,11 +176,13 @@ $(document).ready(function() {
     var responseCounter = 0;
     for (var i = 0; i < NUM_COLS; i++) {
       (function(colNum) {
-        $.post('/search', {"startDate": dataToSend[i][0],
-                           "endDate": dataToSend[i][1],
-                           "cluster": dataToSend[i][0]}, function(res) {
-             console.log('#h' + colNum.toString());
-             console.log(res[0]['Category']);
+        // $.post('/search', {"startDate": dataToSend[i][0],
+        //                    "endDate": dataToSend[i][1],
+        //                    "cluster": dataToSend[i][2]}, function(res) {
+        // SEEMS TO BE BROKEN FOR NOW BRENNAN FIX!?!?!?!
+        $.post('/search', {"startDate": "",
+                           "endDate": "",
+                           "cluster": ""}, function(res) {
              questions[colNum] = res;
              $('#h' + colNum.toString()).text(res[0]['Category']);
              responseCounter++;
@@ -148,7 +193,6 @@ $(document).ready(function() {
            });
        })(i);
     }
-    console.log(questions);
   });
 
   $('.querySubTitle').click(function() {
@@ -201,11 +245,6 @@ $(document).ready(function() {
 
 console.log('Module loaded')
 angular.module('GameBoard', [])
-
-.controller('Header', ['$scope', function($scope) {
-  $scope.score = 0;
-}])
-
 
 .controller('gameCol', ['$scope', function($scope) {
   $scope.a = 1;

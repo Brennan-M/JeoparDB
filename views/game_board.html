@@ -13,6 +13,7 @@
     </script>
     <link href='https://fonts.googleapis.com/css?family=Fontdiner+Swanky' rel='stylesheet' type='text/css'>
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/javascripts/answerCompare.js"></script>
     <script src="/javascripts/game_board.js"></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/gameStyle.css">
     <title>JeoparDB</title>
@@ -25,10 +26,10 @@
         console.log("Loaded successfully!")
       }
     </script>
-    <div ng-controller="Header" class="row" id="headerInfo">
+    <div class="row" id="headerInfo">
       <div class="col-md-4" id="team">Team: <%= team %></div>
       <h1 id="JeopardyTitle" class="col-md-4">JeoparDB!</h1>
-      <div class="col-md-4" id="score">Score: {{score}}</div>
+      <div class="col-md-4" id="score">Score: <b id="scoreNum">0</b></div>
     </div>
     <!-- Setup Tables -->
     <div id="setup">
@@ -79,7 +80,7 @@
       <tbody>
         <tr ng-repeat="row in [0, 1, 2, 3, 4] track by $index">
           <td ng-repeat="col in [0, 1, 2, 3, 4] track by $index" class="qBox" id="q{{row}}{{col}}">
-            ${{(row + 1) * 100}}
+            ${{(row + 1) * 200}}
           </td>
         </tr>
       </tbody>

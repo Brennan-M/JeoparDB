@@ -97,6 +97,9 @@ function makeSubmitListener(row, col) {
     var entered = $('#answerText').val();
     var answer = questions[col][row]['Answer'];
     var correct = isCorrect(entered, answer);
+    $('#questionSubmit').prop('disabled', 'true');
+    $('#questionPass').prop('disabled', 'true');
+    $('#questionPass').off('click');
     $('#CorrectAnswer').append("Answer: " + answer);
     if (correct) {
       $('#Feedback').append("Correct!");
@@ -151,7 +154,10 @@ $(document).ready(function() {
               if (event.which == 13) {
                 (makeSubmitListener(row, col))();
               }
-            })
+            });
+	    $("#questionPass").bind("click", function() {
+	      $('.Question').remove();
+	    });
           });
         });
   });

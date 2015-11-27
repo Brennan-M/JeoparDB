@@ -13,6 +13,8 @@ for (var i = 0; i < NUM_COLS; i++) {
 var toAddToScore = undefined;
 var currScore = 0;
 
+var questionsAnswered = 0;
+
 // ---------------------Helper functions----------------------
 
 // Apply error message for an invalid date
@@ -89,6 +91,17 @@ function updateScore() {
   }
 }
 
+function displayEndGame() {
+  console.log("Triggered!");
+  if (currScore > 0) {
+    $('#finalMessage').append("Congradulations! You're walking away with $"
+        + currScore.toString());
+  } else {
+    $('#finalMessage').append("Sorry you didn't get any money.")
+  }
+    $('#endGameModal').modal();
+}
+
 function makeSubmitListener(row, col) {
   return function(){
     if (toAddToScore != undefined) {
@@ -121,6 +134,9 @@ function makeSubmitListener(row, col) {
     $('#continueButton').bind("click", function() {
       updateScore();
       $('.Question').remove();
+      if (questionsAnswered == 25) {
+        displayEndGame();
+      }
     });
   }
 }
@@ -133,6 +149,7 @@ $(document).ready(function() {
     $(this).off("click");
     $(this).removeClass("qBox");
     $(this).addClass("clickedQBox")
+    questionsAnswered++;
     var h = $(this).height();
     var w = $(this). width();
     var posn = $(this).offset();
@@ -175,7 +192,7 @@ $(document).ready(function() {
               }
             });
       	    $("#questionPass").bind("click", function() {
-      	      toAddToScore = 0;	      
+      	      toAddToScore = 0;
       	      $('#questionSubmit').prop('disabled', 'true');
           	      $('#questionPass').prop('disabled', 'true');
       	      var answer = questions[col][row]['Answer'];
@@ -184,7 +201,11 @@ $(document).ready(function() {
        	      $('#continueButton').bind("click", function() {
         		    updateScore();
         		    $('.Question').remove();
+                if (questionsAnswered == 25) {
+                  displayEndGame();
+                }
       	      });
+              // TODO: I am not sure we want to count this as wrong. Maybe just not record.
               $.post('/update', {"questionId": questions[col][row]['QuestionId'], "status": "wrong"},
                 function(data) {
                   console.log(data);
@@ -272,6 +293,12 @@ $(document).ready(function() {
     $('#em' + column.toString()).remove();
     $('#startDate' + column.toString()).val("");
     $('#endDate' + column.toString()).val("");
+  });
+
+  // Done with game button
+  $('#doneWithGame').click(function() {
+    var currLocation = location.href;
+    location.href = currLocation.substring(0, currLocation.indexOf("game"));
   });
 });
 

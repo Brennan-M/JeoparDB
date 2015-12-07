@@ -5,6 +5,51 @@ var format = require('string-format');
 
 var queryDB = exports = module.exports = {};
 
+queryDB.getLeaders = function(request, callback){
+	var con = mysql.createConnection ({
+		host: config.host,
+		user: config.user,
+		password: config.password,
+		database: config.database
+	});
+
+	con.connect(function(err) {
+		if (err) {
+			console.log('Could not connect to Database.');
+			return;
+		}
+		console.log('Connection established.');
+	});
+
+	var SQLQuery = format('SELECT Fullname, Score FROM Leaderboards ORDER BY Score DESC Limit 10');
+	con.query(SQLQuery, function(err, res) {
+		callback(err, res);
+	});
+}
+
+queryDB.addLeader = function(request, callback){
+	var con = mysql.createConnection ({
+		host: config.host,
+		user: config.user,
+		password: config.password,
+		database: config.database
+	});
+
+	con.connect(function(err) {
+		if (err) {
+			console.log('Could not connect to Database.');
+			return;
+		}
+		console.log('Connection established.');
+	});
+
+	var SQLQuery = format('INSERT INTO Leaderboards (Fullname, Score) VALUES ("' + request.body.Name + '",' + request.body.Score + ')');
+	con.query(SQLQuery, function(err, res) {
+		callback(err, res);
+	});
+}
+
+// BUTTON -> POST REQUEST -> SERVER @ app.js -> CALLS getLeaders() -> PASSES IN callback ->
 
 queryDB.getStats = function(request, callback) {
 	var con = mysql.createConnection ({

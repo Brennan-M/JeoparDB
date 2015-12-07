@@ -177,3 +177,7 @@ body {
   margin-bottom: 0px;
   margin-top: 0px;
 }
+
+#leaderboard-input {
+  visibility: hidden;
+}

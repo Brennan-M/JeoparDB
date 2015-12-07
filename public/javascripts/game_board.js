@@ -93,13 +93,40 @@ function updateScore() {
 
 function displayEndGame() {
   console.log("Triggered!");
-  if (currScore > 0) {
+  var score10 = getLeaders();
+  if (currScore >= score10){
+    $('#finalMessage').append("You're in our top 10 earners! Enter your name to be added to our leaderboard!");
+    $('#leaderboard-input').css("visibility", "visible");
+  } else if (currScore > 0) {
     $('#finalMessage').append("Congradulations! You're walking away with $"
         + currScore.toString());
   } else {
-    $('#finalMessage').append("Sorry you didn't get any money.")
+    $('#finalMessage').append("Sorry you didn't get any money.");
   }
-    $('#endGameModal').modal();
+
+	$('#endGameModal').modal();
+}
+
+function getLeaders(){
+  console.log("LEADERS!");
+  var score10 = 0;
+  $.get('/getLeaders', function(data) {
+        $('#leaderboards').append('<table>');
+        for(var i = 0; i < data.length; i++){
+          $('#leaderboards').append("<tr><td>" + data[i].Fullname + "</td><td>" + data[i].Score + "</td></tr>");
+        }
+        $('#leaderboards').append('</table>');
+        score10 = data[9].Score;
+    });
+  return score10;
+}
+
+function submitName(id){
+  var name = document.getElementById(id).value;
+  $.post('/addLeader', {"Name": name, "Score": currScore},
+      function(data) {
+        console.log(data);
+    });
 }
 
 function makeSubmitListener(row, col) {

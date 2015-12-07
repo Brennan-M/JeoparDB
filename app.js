@@ -53,6 +53,24 @@ app.post('/getStats', function(request, response) {
    });
 });
 
+app.post('/addLeader', function(request, response) {
+    queryDB.addLeader(request, function(err, data) {
+        if (err) {
+          throw err;
+        }
+        response.send(data);
+   });
+});
+
+app.get('/getLeaders', function(request, response) {
+    queryDB.getLeaders(request, function(err, data) {
+        if (err) {
+          throw err;
+        }
+        response.send(data);
+   });
+});
+
 app.post('/update', function(request, response) {
     queryDB.update(request, function(err, data) {
         if (err) {

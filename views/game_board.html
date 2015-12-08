@@ -91,10 +91,15 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="finalMessage"><h4>
+            <h4 class="modal-title" id="leaderboards"></h4>
+              <p> Leaderboards </p>
           </div>
-          <div class="modal-body">
-            STATS GO HERE
+          <div class="modal-body" id="finalMessage">
+            <div id="leaderboard-input">
+              <p> Enter your name here! </p>
+              <input type="text" id="namebox" value=""></input>
+              <button onclick="submitName('namebox')" id="namebutton">Submit Name</button>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" id="doneWithGame">Back to Menu</button>

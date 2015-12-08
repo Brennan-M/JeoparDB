@@ -114,9 +114,10 @@ function getLeaders(){
   console.log("LEADERS!");
   var score10 = 0;
   $.get('/getLeaders', function(data) {
-        $('#leaderboards').append('<table>');
+        $('#leaderboards').empty();
+        $('#leaderboards').append('<h5> Leaderboards </h5><table>');
         for(var i = 0; i < data.length; i++){
-          $('#leaderboards').append("<tr><td>" + data[i].Fullname + "</td><td>" + data[i].Score + "</td></tr>");
+          $('#leaderboards').append("<tr><td id='leader-cell'>" + data[i].Fullname + "</td><td>" + data[i].Score + "</td></tr>");
         }
         $('#leaderboards').append('</table>');
         score10 = data[9].Score;
@@ -126,10 +127,12 @@ function getLeaders(){
 
 function submitName(id){
   var name = document.getElementById(id).value;
+  $('#finalMessage').empty();
   $.post('/addLeader', {"Name": name, "Score": currScore},
       function(data) {
         console.log(data);
     });
+  getLeaders();
 }
 
 function makeSubmitListener(row, col) {

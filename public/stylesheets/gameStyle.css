@@ -181,3 +181,8 @@ body {
 #leaderboard-input {
   visibility: hidden;
 }
+
+#leader-cell {
+  padding: 10px 100px;
+  margin: 10px 100px;
+}

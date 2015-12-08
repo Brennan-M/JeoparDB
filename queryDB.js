@@ -106,6 +106,34 @@ queryDB.update = function(request, callback) {
 	});
 };
 
+
+queryDB.updateGlobalScores = function(request, callback) {
+	var con = mysql.createConnection ({
+		host: config.host,
+		user: config.user,
+		password: config.password,
+		database: config.database
+	});
+
+	con.connect(function(err) {
+		if (err) {
+			console.log('Could not connect to Database.');
+			return;
+		}
+		console.log('Connection established.');
+	});
+
+	var SQLQuery = format('UPDATE TeamScores SET Score = Score + {0} WHERE Team = "{1}";', request.body.score, request.body.team);
+	console.log(SQLQuery);
+	con.query(SQLQuery, function(err, res) {
+		
+		con.end(function(err) { console.log('Connection terminated.') });
+		callback(err, "Success");
+	
+	});
+};
+
+
 queryDB.query = function(request, callback) {
 	
 	var con = mysql.createConnection ({

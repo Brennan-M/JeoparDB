@@ -44,6 +44,15 @@ app.post('/search', function(request, response) {
     queryDB.query(request, anonFunc);
 });
 
+app.post('/updateGlobal', function(request, response) {
+    queryDB.updateGlobalScores(request, function(err, data) {
+        if (err) {
+          throw err;
+        }
+        response.send(data);
+   });
+});
+
 app.post('/getStats', function(request, response) {
     queryDB.getStats(request, function(err, data) {
         if (err) {

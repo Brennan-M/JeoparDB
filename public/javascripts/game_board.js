@@ -89,6 +89,10 @@ function updateScore() {
 
 function displayEndGame() {
   console.log("Triggered!");
+ $.post('/updateGlobal', {"score": currScore,
+                    "team": "Blue"}, function(res) {
+  });
+
   var score10 = getLeaders();
   if (currScore >= score10){
     $('#finalMessage').append("You're in our top 10 earners! Enter your name to be added to our leaderboard!");

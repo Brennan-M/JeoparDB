@@ -78,21 +78,22 @@ queryDB.query = function(request, callback) {
 		console.log('Connection established.');
 	});
 
+	console.log(request.body);
 
 	var sdSQL;
 	if (request.body.startDate == "") {
 		sdSQL = undefined;
 	} else {
-		var startDateArr = request.body.startDate.split("/");
-		console.log(startDateArr);
-		if (startDateArr.length != 3) {
-			sdSQL = undefined;
-		} else {
-			var sdYear = startDateArr[2];
-			var sdMonth = startDateArr[0];
-			var sdDay = startDateArr[1];
-			sdSQL = format("AirDay >= {0} AND AirMonth >= {1} AND AirYear >= {2} ", sdDay, sdMonth, sdYear);
-		}
+		// var startDateArr = request.body.startDate.split("/");
+		// console.log(startDateArr);
+		// if (startDateArr.length != 3) {
+		// 	sdSQL = undefined;
+		// } else {
+		// 	var sdYear = startDateArr[2];
+		// 	var sdMonth = startDateArr[0];
+		// 	var sdDay = startDateArr[1];
+		sdSQL = format("AirYear >= {0} ", request.body.startDate);
+		// }
 	}
 
 
@@ -100,16 +101,18 @@ queryDB.query = function(request, callback) {
 	if (request.body.endDate == "") {
 		edSQL = undefined;
 	} else {
-		var endDateArr = request.body.endDate.split("/");
-		if (endDateArr.length != 3) {
-			edSQL = undefined;
-		} else {
-			var edYear = endDateArr[2];
-			var edMonth = endDateArr[0];
-			var edDay = endDateArr[1];
-			edSQL = format("AirDay < {0} AND AirMonth < {1} AND AirYear < {2} ", edDay, edMonth, edYear);
-		}
+		// var endDateArr = request.body.endDate.split("/");
+		// if (endDateArr.length != 3) {
+		// 	edSQL = undefined;
+		// } else {
+		// 	var edYear = endDateArr[2];
+		// 	var edMonth = endDateArr[0];
+		// 	var edDay = endDateArr[1];
+		edSQL = format("AirYear <= {0} ", request.body.endDate);
+		// }
 	}
+
+	console.log(sdSQL, edSQL);
 
 	var cluster;
 	if (request.body.cluster == "") {

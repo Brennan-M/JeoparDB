@@ -20,7 +20,7 @@ var questionsAnswered = 0;
 // Apply error message for an invalid date
 function applyInvalidDate(col) {
   var errorMsg = "<p style='color: red; font-size: 14px;' class='errorMsg'"
-      + " id='em" + col.toString() + "'> Invalid date (mm/dd/yyyy)</p>";
+      + " id='em" + col.toString() + "'> Invalid date, Range: (1984-2012)</p>";
   $('#date' + col.toString()).append(errorMsg);
 }
 
@@ -29,21 +29,15 @@ function checkDate(date) {
   if (date.length == 0) {
     return true;
   }
-  if (date.length != 10) {
+  if (date.length != 4) {
     return false;
   }
   // This weird if structure accounts for NaN
-  var month = Number(date.substring(0, 2));
-  if (month > 0 && month < 13) {
-    var day = Number(date.substring(3, 5));
-    if (day > 0 && day < 31) {
-      var year = Number(date.substring(6, 10));
-      if (year > 0) {
-        return true;
-      }
-    }
+  var year = Number(date);
+  if (year < 1984 || year > 2012) {
+    return false;
   }
-  return false;
+  return true;
 }
 
 //Get the info filled out by the user returns false if invalid info
@@ -59,8 +53,10 @@ function getInfoForCol(col) {
     applyInvalidDate(col);
     return false;
   }
+  
   toReturn.push(startDate);
   toReturn.push(endDate);
+  console.log(toReturn);
   if (selectedCluster[col] == undefined) {
     toReturn.push("");
   } else {

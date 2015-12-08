@@ -89,9 +89,12 @@ function updateScore() {
 
 function displayEndGame() {
   console.log("Triggered!");
- $.post('/updateGlobal', {"score": currScore,
-                    "team": "Blue"}, function(res) {
-  });
+  if (currScore > 0) {
+    console.log(team);
+    $.post('/updateGlobal', {"score": currScore, 
+        "team": team}, function(res) { 
+     });
+  }
 
   var score10 = getLeaders();
   if (currScore >= score10){

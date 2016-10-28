@@ -11,6 +11,7 @@ asked on previous episodes of the show and test their skills against the world.
 In order to install dependencies run the following command:
 ```
 npm install
+npm install bower -g
 bower install
 mv bower_components public
 ```
